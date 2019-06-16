@@ -51,5 +51,17 @@ public class TestModelServiceImpl implements TestModelService {
 	public void saveUpdateUserDetailsAndVeh(List<UserVehReqDTO> userVehReqDTOs) {
 		testModelDAO.saveUpdateUserDetailsAndVeh(userVehReqDTOs);
 	}
+	
+	@Override
+	public Object getUserNativeQuery(String where, String name, long seq) {
+		return testModelDAO.getUserNativeQuery(where, name, seq);
+	}
+
+	@Override
+	public UserDetails getUserDetailsByNameAndWhere(String where, String name, long seq) throws CustomException {
+		// TODO Auto-generated method stub
+		return testModelDAO.getUserDetailsByNameAndWhere(where, name, seq);
+	}
+
 
 }

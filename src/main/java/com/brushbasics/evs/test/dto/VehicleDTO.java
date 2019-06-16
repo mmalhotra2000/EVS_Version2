@@ -2,7 +2,7 @@ package com.brushbasics.evs.test.dto;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
-@JsonFilter("vehicleFilter")
+//@JsonFilter("vehicleFilter")
 public class VehicleDTO {
 	private long seq;
 	private String name;

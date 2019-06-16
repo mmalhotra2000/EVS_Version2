@@ -7,12 +7,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @NamedQueries({
 		@NamedQuery(name = "UserDetails.getUserByName", query = "select u from userdetails u where u.name = ?1") })
+@NamedNativeQueries({
+	@NamedNativeQuery(name="GettestSQL",query="select seq,name from userdetails")
+})
 @Entity(name = "userdetails")
 public class UserDetails extends BaseModel {
 

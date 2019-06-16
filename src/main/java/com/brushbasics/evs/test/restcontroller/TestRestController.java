@@ -125,7 +125,8 @@ public class TestRestController {
 		try {
 			testModelServiceImpl.saveUserDetails(details);
 		} catch (CustomException e) {
-			throw new CustomException("Somethig went wrong in method  createUserDetails() of class TestRestController" , e);
+			throw new CustomException("Somethig went wrong in method  createUserDetails() of class TestRestController",
+					e);
 		}
 	}
 
@@ -133,6 +134,19 @@ public class TestRestController {
 	public void createUserDetails(@Valid @RequestBody LeadDTO leadDTO) {
 
 		System.out.println("done");
+	}
+
+	@GetMapping(path = "/users/native")
+	public Object getAllUsers() throws CustomException {
+		return testModelServiceImpl.getUserNativeQuery("where seq=?1 and name= ?2", "test1", 1);
+	}
+
+	@GetMapping(path = "/users/named")
+	public UserDetailsDTO getUserDetailsByNameAndWhere() throws CustomException {
+		UserDetails userDetails = testModelServiceImpl.getUserDetailsByNameAndWhere("where seq=?1 and name= ?2",
+				"test1", 1);
+		UserDetailsDTO userDetailsDTO = ObjectMapperUtils.map(userDetails, UserDetailsDTO.class);
+		return userDetailsDTO;
 	}
 
 }

@@ -19,5 +19,9 @@ public interface TestModelDAO {
 	
 	public void saveUpdateUserDetailsAndVeh(List<UserVehReqDTO> userVehReqDTOs);
 
+	Object getUserNativeQuery(String where, String name, long seq);
+
+	UserDetails getUserDetailsByNameAndWhere(String where, String name, long seq) throws CustomException;
+
 
 }

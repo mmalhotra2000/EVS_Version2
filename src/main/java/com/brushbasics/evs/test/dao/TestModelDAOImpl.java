@@ -51,5 +51,25 @@ public class TestModelDAOImpl extends BaseDAO implements TestModelDAO {
 		});
 		
 	}
+	
+	@Override
+	public Object getUserNativeQuery(String where , String name, long seq) {
+		String query  =  "Select seq, name from userdetails "+where; // where seq = ?1 and name = ?2
+		Query query2 = sessionFactory.getCurrentSession().createNativeQuery(query);
+		query2.setParameter(1, seq);
+		query2.setParameter(2, name);
+		return query2.getResultList();
+	}
+	
+	@Override
+	public UserDetails getUserDetailsByNameAndWhere(String where , String name, long seq) throws CustomException{
+		Session session = sessionFactory.getCurrentSession();
+		String  qeurtt= "select u from userdetails u "+where;
+		Query query2 = session.createQuery(qeurtt, UserDetails.class);
+		query2.setParameter(1, seq);
+		query2.setParameter(2, name);
+		return (UserDetails) query2.getSingleResult();
+		
+	}
 
 }

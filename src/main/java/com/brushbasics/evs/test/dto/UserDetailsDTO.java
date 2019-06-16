@@ -4,17 +4,13 @@ import java.util.List;
 
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-
-@JsonFilter("userDetailsFilter")
+//@JsonFilter("userDetailsFilter")
 public class UserDetailsDTO {
 
 	private long seq;
-	@Size(min=3)
+	@Size(min = 3)
 	private String name;
 	private List<VehicleDTO> vehicleDTOs;
-	
-	
 
 	public UserDetailsDTO() {
 		super();
