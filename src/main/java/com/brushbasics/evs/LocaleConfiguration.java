@@ -16,6 +16,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  */
 @Configuration
 public class LocaleConfiguration implements WebMvcConfigurer {
+	
+	
+	
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();

@@ -2,6 +2,7 @@ package com.brushbasics.evs.test.dao;
 
 import java.util.List;
 
+import com.brushbasics.evs.CustomException;
 import com.brushbasics.evs.test.dto.UserVehReqDTO;
 import com.brushbasics.evs.test.model.TestModel;
 import com.brushbasics.evs.test.model.UserDetails;
@@ -12,9 +13,9 @@ public interface TestModelDAO {
 
 	void saveTestModel(TestModel testModel);
 
-	void saveUserDetails(UserDetails userDetails);
+	void saveUserDetails(UserDetails userDetails) throws CustomException;
 
-	UserDetails getUserDetailsByName(String name);
+	UserDetails getUserDetailsByName(String name) throws CustomException;
 	
 	public void saveUpdateUserDetailsAndVeh(List<UserVehReqDTO> userVehReqDTOs);
 

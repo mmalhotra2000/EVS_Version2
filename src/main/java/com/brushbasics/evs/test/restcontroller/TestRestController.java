@@ -3,6 +3,8 @@ package com.brushbasics.evs.test.restcontroller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.brushbasics.evs.CustomException;
+import com.brushbasics.evs.ObjectMapperUtils;
+import com.brushbasics.evs.test.dto.FinalResponseDTO;
+import com.brushbasics.evs.test.dto.LeadDTO;
 import com.brushbasics.evs.test.dto.UserDetailsDTO;
 import com.brushbasics.evs.test.dto.UserVehReqDTO;
 import com.brushbasics.evs.test.model.UserDetails;
@@ -35,7 +41,7 @@ public class TestRestController {
 	}
 
 	@GetMapping(path = "/save")
-	public void save() {
+	public void save() throws CustomException {
 
 		Vehicle vehicle1 = new Vehicle();
 		vehicle1.setName("veh1");
@@ -52,12 +58,12 @@ public class TestRestController {
 		vehicle2.setUserDetails(userDetails);
 
 		userDetails.setVehicles(Arrays.asList(vehicle1, vehicle2));
-
 		testModelServiceImpl.saveUserDetails(userDetails);
+
 	}
 
 	@GetMapping(path = "/users/{name}")
-	public MappingJacksonValue getAllUsers(@PathVariable("name") String name) {
+	public MappingJacksonValue getAllUsers(@PathVariable("name") String name) throws CustomException {
 
 		UserDetailsDTO userDetailsDTO = testModelServiceImpl.getUserDetailsByName(name);
 
@@ -67,7 +73,8 @@ public class TestRestController {
 		SimpleBeanPropertyFilter filter1 = SimpleBeanPropertyFilter.filterOutAllExcept("name", "vehicleDTOs");
 
 		// create filter provider
-		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter).addFilter("userDetailsFilter", filter1);
+		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter)
+				.addFilter("userDetailsFilter", filter1);
 
 		// Create mapping jackson abject to serialize and set/apply filters to user bean
 
@@ -76,32 +83,56 @@ public class TestRestController {
 		mapping.setFilters(filters);
 		return mapping;
 	}
-	
-	@GetMapping(path = "/users//filter/{name}")
-	public MappingJacksonValue getAllFilteredUsers(@PathVariable("name") String name) {
 
-		UserDetailsDTO userDetailsDTO = testModelServiceImpl.getUserDetailsByName(name);
+	@GetMapping(path = "/users/filter/{name}")
+	public UserDetailsDTO getAllFilteredUsers(@PathVariable("name") String name) throws CustomException {
+
+		UserDetailsDTO userDetailsDTO;
+		try {
+			userDetailsDTO = testModelServiceImpl.getUserDetailsByName(name);
+		} catch (CustomException e) {
+			throw new CustomException("This method para is not valid", e);
+		}
 
 		// create filter
-		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("seq", "userDetails","color");
+		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("seq", "userDetails", "color");
 		// create filter
 		SimpleBeanPropertyFilter filter1 = SimpleBeanPropertyFilter.filterOutAllExcept("name", "vehicleDTOs");
 
 		// create filter provider
-		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter).addFilter("userDetailsFilter", filter1);
+		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter)
+				.addFilter("userDetailsFilter", filter1);
 
 		// Create mapping jackson abject to serialize and set/apply filters to user bean
 
 		MappingJacksonValue mapping = new MappingJacksonValue(userDetailsDTO);
-
 		mapping.setFilters(filters);
-		return mapping;
+
+		FinalResponseDTO finalResponseDTO = new FinalResponseDTO("success", mapping);
+		return userDetailsDTO;
 	}
-	
+
 	@PutMapping("/usersave")
-	public void saveOrUpdateUser(@RequestBody List<UserVehReqDTO> userVehReqDTOs) {
+	public void saveOrUpdateUser(@Valid @RequestBody List<UserVehReqDTO> userVehReqDTOs) {
 		testModelServiceImpl.saveUpdateUserDetailsAndVeh(userVehReqDTOs);
 	}
-	
+
+	@PostMapping("/createuser")
+	public void createUserDetails(@Valid @RequestBody UserDetailsDTO userDetailsDTO) throws CustomException {
+		UserDetails details = ObjectMapperUtils.map(userDetailsDTO, new UserDetails());
+		Vehicle vehicle = ObjectMapperUtils.map(userDetailsDTO.getVehicleDTOs().get(0), new Vehicle());
+		details.setVehicles(Arrays.asList(vehicle));
+		try {
+			testModelServiceImpl.saveUserDetails(details);
+		} catch (CustomException e) {
+			throw new CustomException("Somethig went wrong in method  createUserDetails() of class TestRestController" , e);
+		}
+	}
+
+	@PostMapping("/savelead")
+	public void createUserDetails(@Valid @RequestBody LeadDTO leadDTO) {
+
+		System.out.println("done");
+	}
 
 }

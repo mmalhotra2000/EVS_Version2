@@ -2,12 +2,15 @@ package com.brushbasics.evs.test.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonFilter;
 
 @JsonFilter("userDetailsFilter")
 public class UserDetailsDTO {
 
 	private long seq;
+	@Size(min=3)
 	private String name;
 	private List<VehicleDTO> vehicleDTOs;
 	

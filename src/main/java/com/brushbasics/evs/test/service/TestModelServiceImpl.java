@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.brushbasics.evs.CustomException;
 import com.brushbasics.evs.ObjectMapperUtils;
 import com.brushbasics.evs.test.dao.TestModelDAO;
 import com.brushbasics.evs.test.dto.UserDetailsDTO;
@@ -32,12 +33,12 @@ public class TestModelServiceImpl implements TestModelService {
 	}
 
 	@Override
-	public void saveUserDetails(UserDetails userDetails) {
+	public void saveUserDetails(UserDetails userDetails) throws CustomException {
 		testModelDAO.saveUserDetails(userDetails);
 	}
 
 	@Override
-	public UserDetailsDTO getUserDetailsByName(String name) {
+	public UserDetailsDTO getUserDetailsByName(String name) throws CustomException {
 		UserDetails userDetails= testModelDAO.getUserDetailsByName(name);
 		UserDetailsDTO userDetailsDTO = ObjectMapperUtils.map(userDetails,
 				UserDetailsDTO.class);

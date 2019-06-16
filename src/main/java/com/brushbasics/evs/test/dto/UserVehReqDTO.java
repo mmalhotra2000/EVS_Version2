@@ -1,8 +1,11 @@
 package com.brushbasics.evs.test.dto;
 
+import javax.validation.constraints.Size;
+
 public class UserVehReqDTO {
 	
 	private long useq;
+	@Size(min=3)
 	private String uname;
 	private long vseq;
 	public UserVehReqDTO() {
