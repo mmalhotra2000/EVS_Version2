@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brushbasics.evs.CustomException;
 import com.brushbasics.evs.ObjectMapperUtils;
+import com.brushbasics.evs.restcaller.EmployeeResponse;
+import com.brushbasics.evs.restcaller.TestServiceProxy;
 import com.brushbasics.evs.test.dto.FinalResponseDTO;
 import com.brushbasics.evs.test.dto.LeadDTO;
 import com.brushbasics.evs.test.dto.UserDetailsDTO;
 import com.brushbasics.evs.test.dto.UserVehReqDTO;
+import com.brushbasics.evs.test.model.Employee;
 import com.brushbasics.evs.test.model.UserDetails;
 import com.brushbasics.evs.test.model.Vehicle;
 import com.brushbasics.evs.test.service.TestModelService;
@@ -28,9 +32,12 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/rest")
 public class TestRestController {
+	@Autowired
+	private TestServiceProxy  testServiceProxy;
 
 	@Autowired
 	private TestModelService testModelServiceImpl;
@@ -39,6 +46,13 @@ public class TestRestController {
 	public String hello() {
 		return "hello";
 	}
+	
+	@GetMapping(path = "/employees")
+	public List<EmployeeResponse> getAllEmployees() {
+		return testServiceProxy.getAllflightsFromBookingService();
+		//return Arrays.asList(new Employee("1", "Mohit", "Dev", "4354545"),new Employee("2", "Rohit", "Dev", "4354545"));
+	}
+
 
 	@GetMapping(path = "/save")
 	public void save() throws CustomException {
@@ -63,25 +77,25 @@ public class TestRestController {
 	}
 
 	@GetMapping(path = "/users/{name}")
-	public MappingJacksonValue getAllUsers(@PathVariable("name") String name) throws CustomException {
+	public UserDetailsDTO getAllUsers(@PathVariable("name") String name) throws CustomException {
 
 		UserDetailsDTO userDetailsDTO = testModelServiceImpl.getUserDetailsByName(name);
 
-		// create filter
-		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("seq", "userDetails");
-		// create filter
-		SimpleBeanPropertyFilter filter1 = SimpleBeanPropertyFilter.filterOutAllExcept("name", "vehicleDTOs");
-
-		// create filter provider
-		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter)
-				.addFilter("userDetailsFilter", filter1);
-
-		// Create mapping jackson abject to serialize and set/apply filters to user bean
-
-		MappingJacksonValue mapping = new MappingJacksonValue(userDetailsDTO);
-
-		mapping.setFilters(filters);
-		return mapping;
+//		// create filter
+//		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("seq", "userDetails");
+//		// create filter
+//		SimpleBeanPropertyFilter filter1 = SimpleBeanPropertyFilter.filterOutAllExcept("name", "vehicleDTOs");
+//
+//		// create filter provider
+//		FilterProvider filters = new SimpleFilterProvider().addFilter("vehicleFilter", filter)
+//				.addFilter("userDetailsFilter", filter1);
+//
+//		// Create mapping jackson abject to serialize and set/apply filters to user bean
+//
+//		MappingJacksonValue mapping = new MappingJacksonValue(userDetailsDTO);
+//
+//		mapping.setFilters(filters);
+		return userDetailsDTO;
 	}
 
 	@GetMapping(path = "/users/filter/{name}")

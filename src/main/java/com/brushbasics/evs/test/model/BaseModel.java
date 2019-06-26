@@ -1,5 +1,7 @@
 package com.brushbasics.evs.test.model;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,27 +16,70 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+@EntityListeners({ BaseEntityListener.class })
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-public class BaseModel {
+public class BaseModel implements Serializable, JPADataListenerClient {
 
-	@CreatedDate
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_date")
-	private Date createdDate;
+	/**
+	 * 
+	 */
 
-	@LastModifiedDate
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "modify_date")
-	private Date modifiedDate;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1136438170727147281L;
 
-	@CreatedBy
-	@Column(name = "create_user")
-	private String createdBy;
+	/**
+	 * when is this record been create
+	 */
+	protected Timestamp createDate;
 
-	@LastModifiedBy
-	@Column(name = "modify_user")
-	private String modifiedBy;
-	
+	/**
+	 * who creating the record
+	 */
+	protected String createUser;
+
+	/**
+	 * when is this record been updated
+	 */
+	protected Timestamp modifyDate;
+
+	/**
+	 * who make the last update
+	 * 
+	 */
+	protected String modifyUser;
+
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+	public Timestamp getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Timestamp modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
+	}
 
 }
