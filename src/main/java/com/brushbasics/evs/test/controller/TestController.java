@@ -30,7 +30,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public String welcome(Map<String, Object> model) {
 		model.put("message", "testing page");
-		return "test";
+		return "/userregistration/index";
 	}
 
 	@GetMapping("/showTestForm")

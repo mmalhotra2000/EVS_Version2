@@ -10,11 +10,11 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.brushbasics.gyansetu</groupId>
-	<artifactId>eventmgmtsystemv2</artifactId>
+	<artifactId>matrimonialproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>eventmgmtsystemv2</name>
-	<description>Project for Event Management System</description>
+	<name>matrimonialproject</name>
+	<description>Project for Matrimonial System</description>
 
 	<properties>
 		<java.version>1.8</java.version>
