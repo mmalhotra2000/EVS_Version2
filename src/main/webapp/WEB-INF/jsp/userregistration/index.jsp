@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <spring:url value="/css/font-awesome.css" var="fontawesome" />
 <spring:url value="/css/style.css" var="style" />
 <spring:url value="/js/jquery.min.js" var="jquery" />
-<spring:url value="js/jquery.flexisel.js" var="jquery.flexisel.js" />
+<spring:url value="/js/jquery.flexisel.js" var="flexisel" />
 <spring:url value="/js/bootstrap.min.js" var="bootstrapmin" />
 <spring:url value="/images" var="images" />
 
@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!----font-Awesome----->
 <link href="${fontawesome}" rel="stylesheet" />
 <!----font-Awesome----->
-<script type="text/javascript" src="${jquery.flexisel.js}"></script>
+<script src="${flexisel}"></script>
 
 <script>
 	$(document).ready(function() {
