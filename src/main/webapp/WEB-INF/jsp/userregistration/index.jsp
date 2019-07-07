@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,24 +14,33 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <spring:url value="/css/bootstrap-3.1.1.min.css" var="bootstrap3" />
+<spring:url value="/css/font-awesome.css" var="fontawesome" />
+<spring:url value="/css/style.css" var="style" />
 <spring:url value="/js/jquery.min.js" var="jquery" />
+<spring:url value="js/jquery.flexisel.js" var="jquery.flexisel.js" />
 <spring:url value="/js/bootstrap.min.js" var="bootstrapmin" />
+<spring:url value="/images" var="images" />
+
 <link href="${bootstrap3}" rel="stylesheet" />
 <script src="${jquery}"></script>
 <script src="${bootstrapmin}"></script>
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="${style}" rel='stylesheet' type='text/css' />
 <link href='//fonts.googleapis.com/css?family=Oswald:300,400,700'
 	rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700'
 	rel='stylesheet' type='text/css'>
 <!----font-Awesome----->
-<link href="css/font-awesome.css" rel="stylesheet">
+<link href="${fontawesome}" rel="stylesheet" />
 <!----font-Awesome----->
+<script type="text/javascript" src="${jquery.flexisel.js}"></script>
+
 <script>
 	$(document).ready(function() {
 		$(".dropdown").hover(function() {
@@ -60,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</nav>
 				</div>
-				<a class="brand" href="index.html"><img src="images/logo.png"
+				<a class="brand" href="index.html"><img src="${images}/logo.png"
 					alt="logo"></a>
 				<div class="pull-right">
 					<nav class="navbar nav_bottom" role="navigation">
@@ -215,7 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<ul id="flexiselDemo3">
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/1.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/1.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Him</div>
@@ -226,7 +237,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h3></a>
 					</div></li>
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/2.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/2.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Her</div>
@@ -237,7 +248,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h3></a>
 					</div></li>
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/3.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/3.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Him</div>
@@ -248,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h3></a>
 					</div></li>
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/4.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/4.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Her</div>
@@ -259,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h3></a>
 					</div></li>
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/5.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/5.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Him</div>
@@ -270,7 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</h3></a>
 					</div></li>
 				<li><div class="col_1">
-						<a href="view_profile.html"> <img src="images/6.jpg" alt=""
+						<a href="view_profile.html"> <img src="${images}/6.jpg" alt=""
 							class="hover-animation image-zoom-in img-responsive" />
 							<div class="layer m_1 hidden-link hover-animation delay1 fade-in">
 								<div class="center-middle">About Her</div>
@@ -308,7 +319,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				});
 			</script>
-			<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 		</div>
 	</div>
 	<div class="grid_2">
@@ -327,7 +337,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/7.jpg"
+									<img width="75" height="75" src="${images}/7.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -348,7 +358,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/8.jpg"
+									<img width="75" height="75" src="${images}/8.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -369,7 +379,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/9.jpg"
+									<img width="75" height="75" src="${images}/9.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -390,7 +400,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/10.jpg"
+									<img width="75" height="75" src="${images}/10.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -411,7 +421,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/11.jpg"
+									<img width="75" height="75" src="${images}/11.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -432,7 +442,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/12.jpg"
+									<img width="75" height="75" src="${images}/12.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -453,7 +463,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="suceess_story-content-container">
 								<figure class="suceess_story-content-featured-image">
-									<img width="75" height="75" src="images/13.jpg"
+									<img width="75" height="75" src="${images}/13.jpg"
 										class="img-responsive" alt="" />
 								</figure>
 								<div class="suceess_story-content-info">
@@ -474,7 +484,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>News & Events</h3>
 					<div class="box_1">
 						<figure class="thumbnail1">
-							<img width="170" height="155" src="images/14.jpg"
+							<img width="170" height="155" src="${images}/14.jpg"
 								class="img-responsive" alt="" />
 						</figure>
 						<div class="extra-wrap">
@@ -496,7 +506,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="box_1">
 						<figure class="thumbnail1">
-							<img width="170" height="155" src="images/15.jpg"
+							<img width="170" height="155" src="${images}/15.jpg"
 								class="img-responsive" alt="" />
 						</figure>
 						<div class="extra-wrap">
@@ -518,7 +528,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="box_2">
 						<figure class="thumbnail1">
-							<img width="170" height="155" src="images/1.jpg"
+							<img width="170" height="155" src="${images}/1.jpg"
 								class="img-responsive" alt="" />
 						</figure>
 						<div class="extra-wrap">
@@ -688,7 +698,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"></div>
 			<div class="copy">
 				<p>
-					Copyright © 2015 Marital . All Rights Reserved | Design by <a
+					Copyright Â© 2015 Marital . All Rights Reserved | Design by <a
 						href="http://w3layouts.com/" target="_blank">W3layouts</a>
 				</p>
 			</div>
