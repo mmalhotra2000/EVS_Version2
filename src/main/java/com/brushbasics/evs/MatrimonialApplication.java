@@ -12,10 +12,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableFeignClients
 @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @EnableJpaRepositories
-public class Eventmgmtsystemv2Application {
+public class MatrimonialApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Eventmgmtsystemv2Application.class, args);
+		SpringApplication.run(MatrimonialApplication.class, args);
 	}
 
 }
