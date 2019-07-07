@@ -15,7 +15,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -135,11 +137,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- end navbar-inverse-blue -->
 	<!-- ============================  Navigation End ============================ -->
+	<!-- construct an "update" link with customer id -->
+	<c:url var="createProfileLink" value="/testcontroller/openRegistration">
+	</c:url>
 	<div class="banner">
 		<div class="container">
 			<div class="banner_info">
-				<h3>Millions of verified Members</h3>
-				<a href="view_profile.html" class="hvr-shutter-out-horizontal">Create
+				<h3>
+					<spring:message code="welcome_message" />
+				</h3>
+				<a href="${createProfileLink}" class="hvr-shutter-out-horizontal">Create
 					your Profile</a>
 			</div>
 		</div>

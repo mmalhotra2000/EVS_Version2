@@ -33,6 +33,14 @@ public class TestController {
 		return "/userregistration/index";
 	}
 
+	// openRegistration
+
+	@RequestMapping("/openRegistration")
+	public String displayRegistrationPage(Map<String, Object> model) {
+		model.put("message", "testing page");
+		return "/userregistration/view_profile";
+	}
+
 	@GetMapping("/showTestForm")
 	public String showFormForAdd(Model theModel) {
 		LOGGER.trace("trace enter test");
@@ -64,6 +72,7 @@ public class TestController {
 		Config.set(httpServletRequest.getSession(), Config.FMT_LOCALE, new java.util.Locale("hi", "IN"));
 		return "welcome";
 	}
+
 	@RequestMapping("/change-en")
 	public String changeLocaleEn(HttpServletRequest httpServletRequest) {
 		Config.set(httpServletRequest.getSession(), Config.FMT_LOCALE, new java.util.Locale("en", "IN"));

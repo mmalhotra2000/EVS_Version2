@@ -10,11 +10,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaAuditing
 @EnableFeignClients
-@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
 @EnableJpaRepositories
 public class MatrimonialApplication {
 
 	public static void main(String[] args) {
+//		System.setProperty("server.servlet.context-path", "/baeldung");
 		SpringApplication.run(MatrimonialApplication.class, args);
 	}
 
