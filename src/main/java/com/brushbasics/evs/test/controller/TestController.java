@@ -1,5 +1,6 @@
 package com.brushbasics.evs.test.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brushbasics.evs.test.model.TestModel;
 import com.brushbasics.evs.test.service.TestModelService;
@@ -51,6 +53,14 @@ public class TestController {
 		TestModel testModel = new TestModel();
 		theModel.addAttribute("testModel", testModel);
 		LOGGER.trace("trace exit");
+		return "test-form";
+	}
+
+	@GetMapping(path = "/updateTestForm")
+	public String showFormForAdd(@RequestParam("seq")  BigDecimal seq, Model model) {
+		TestModel testModelForUpdate =  testModelService.getTestModelById(seq);
+		model.addAttribute("testModel",testModelForUpdate);
+		
 		return "test-form";
 	}
 

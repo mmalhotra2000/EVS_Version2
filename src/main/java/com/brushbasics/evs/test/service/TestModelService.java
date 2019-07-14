@@ -1,5 +1,6 @@
 package com.brushbasics.evs.test.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.brushbasics.evs.CustomException;
@@ -22,6 +23,8 @@ public interface TestModelService {
 	Object getUserNativeQuery(String where, String name, long seq);
 	
 	UserDetails getUserDetailsByNameAndWhere(String where, String name, long seq) throws CustomException;
+
+	TestModel getTestModelById(BigDecimal seq);
 
 
 }

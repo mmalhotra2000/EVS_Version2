@@ -1,5 +1,6 @@
 package com.brushbasics.evs.test.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.brushbasics.evs.CustomException;
@@ -16,12 +17,13 @@ public interface TestModelDAO {
 	void saveUserDetails(UserDetails userDetails) throws CustomException;
 
 	UserDetails getUserDetailsByName(String name) throws CustomException;
-	
+
 	public void saveUpdateUserDetailsAndVeh(List<UserVehReqDTO> userVehReqDTOs);
 
 	Object getUserNativeQuery(String where, String name, long seq);
 
 	UserDetails getUserDetailsByNameAndWhere(String where, String name, long seq) throws CustomException;
 
+	TestModel getTestModelById(BigDecimal seq);
 
 }

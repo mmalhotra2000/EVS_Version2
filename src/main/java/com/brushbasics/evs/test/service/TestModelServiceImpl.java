@@ -1,5 +1,6 @@
 package com.brushbasics.evs.test.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class TestModelServiceImpl implements TestModelService {
 	private TestModelDAO testModelDAO;
 
 	@Override
+	public TestModel getTestModelById(BigDecimal seq) {
+		return testModelDAO.getTestModelById(seq);
+	}
+
+	@Override
 	public void saveTestModel(TestModel testModel) {
 		testModelDAO.saveTestModel(testModel);
 	}
@@ -39,10 +45,9 @@ public class TestModelServiceImpl implements TestModelService {
 
 	@Override
 	public UserDetailsDTO getUserDetailsByName(String name) throws CustomException {
-		UserDetails userDetails= testModelDAO.getUserDetailsByName(name);
-		UserDetailsDTO userDetailsDTO = ObjectMapperUtils.map(userDetails,
-				UserDetailsDTO.class);
-		List<VehicleDTO> vehicleDTOs  = ObjectMapperUtils.mapAll(userDetails.getVehicles(), VehicleDTO.class);
+		UserDetails userDetails = testModelDAO.getUserDetailsByName(name);
+		UserDetailsDTO userDetailsDTO = ObjectMapperUtils.map(userDetails, UserDetailsDTO.class);
+		List<VehicleDTO> vehicleDTOs = ObjectMapperUtils.mapAll(userDetails.getVehicles(), VehicleDTO.class);
 		userDetailsDTO.setVehicleDTOs(vehicleDTOs);
 		return userDetailsDTO;
 	}
@@ -51,7 +56,7 @@ public class TestModelServiceImpl implements TestModelService {
 	public void saveUpdateUserDetailsAndVeh(List<UserVehReqDTO> userVehReqDTOs) {
 		testModelDAO.saveUpdateUserDetailsAndVeh(userVehReqDTOs);
 	}
-	
+
 	@Override
 	public Object getUserNativeQuery(String where, String name, long seq) {
 		return testModelDAO.getUserNativeQuery(where, name, seq);
@@ -62,6 +67,5 @@ public class TestModelServiceImpl implements TestModelService {
 		// TODO Auto-generated method stub
 		return testModelDAO.getUserDetailsByNameAndWhere(where, name, seq);
 	}
-
 
 }

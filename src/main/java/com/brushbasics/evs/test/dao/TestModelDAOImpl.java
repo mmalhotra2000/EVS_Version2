@@ -1,5 +1,6 @@
 package com.brushbasics.evs.test.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -70,6 +71,12 @@ public class TestModelDAOImpl extends BaseDAO implements TestModelDAO {
 		query2.setParameter(2, name);
 		return (UserDetails) query2.getSingleResult();
 		
+	}
+
+	@Override
+	public TestModel getTestModelById(BigDecimal seq) {
+	
+		return (TestModel) get(TestModel.class, seq);
 	}
 
 }
